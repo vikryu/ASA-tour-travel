@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs / temp
+*.log
+_test_*.js
+node_modules/
+.cache/
+
+
+# Kiro local config
+.kiro/

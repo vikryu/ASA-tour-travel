@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paket Haji &amp; Umroh — ASA Tour &amp; Travel</title>
+  <meta name="description" content="Daftar paket Haji & Umroh yang sedang berlaku di ASA Tour & Travel. Saring berdasarkan jenis ibadah, lihat detail fasilitas, harga, jadwal, dan hotel." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Beranda</a> / Paket</div>
+      <h1>Paket Haji &amp; Umroh yang Sedang Berlaku</h1>
+      <p>Pilih paket ibadah sesuai jadwal dan anggaran Anda. Seluruh paket di bawah ini sedang aktif dan menerima pendaftaran.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="pkg-toolbar">
+        <div class="filter-tabs" id="filterTabs">
+          <button data-filter="all" class="active">Semua</button>
+          <button data-filter="umroh">Umroh</button>
+          <button data-filter="haji">Haji</button>
+        </div>
+        <div class="pkg-search">
+          <span class="ic">🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari nama paket, hotel, maskapai..." />
+        </div>
+      </div>
+
+      <p id="resultCount" style="color:var(--text-soft);font-size:.9rem;margin-bottom:18px"></p>
+      <div class="pkg-grid" id="packageList"></div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Butuh Paket Khusus atau Grup?</h2>
+        <p>Kami melayani paket private, keluarga, instansi, dan komunitas dengan jadwal serta fasilitas yang dapat disesuaikan.</p>
+        <div class="cta-actions">
+          <a href="kontak.html" class="btn btn-gold">Ajukan Paket Khusus</a>
+          <a href="admin.html" class="btn btn-ghost">Kelola Paket</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/scenes.js"></script>
+  <script src="assets/js/cards.js"></script>
+  <script src="assets/js/packages.js"></script>
+</body>
+</html>
