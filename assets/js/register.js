@@ -10,7 +10,8 @@
   /* Populate active packages into the dropdown */
   function packageById(name) { return ASA.active().find((p) => p.name === name); }
 
-  if (sel) {
+  ASA.init().then(function () {
+    if (!sel) return;
     ASA.active().forEach((p) => {
       const o = document.createElement("option");
       o.value = p.name;
@@ -21,7 +22,7 @@
     if (pre) sel.value = pre;
     sel.addEventListener("change", renderSummary);
     renderSummary();
-  }
+  });
 
   function renderSummary() {
     if (!summaryBox) return;

@@ -45,5 +45,5 @@
     currentCat = cat;
     tabs.querySelectorAll("button").forEach((b) => b.classList.toggle("active", b.getAttribute("data-filter") === cat));
   }
-  update();
+  ASA.init().then(update);
 })();

@@ -1,0 +1,51 @@
+# Konfigurasi Pages CMS (https://pagescms.org)
+# Buka https://app.pagescms.org -> login GitHub -> pilih repo ini,
+# lalu kelola paket lewat formulir tanpa menyentuh kode.
+
+media:
+  input: assets/img
+  output: assets/img
+  extensions: [jpg, jpeg, png, webp]
+  categories: [image]
+
+content:
+  - name: paket
+    label: Paket Umroh
+    type: file
+    path: data/packages.json
+    fields:
+      - name: packages
+        label: Daftar Paket
+        type: object
+        list:
+          default: []
+        fields:
+          - { name: name, label: Nama Paket, type: string, required: true }
+          - { name: id, label: Kode unik (huruf kecil, tanpa spasi), type: string, required: true, pattern: "^[a-z0-9-]+$" }
+          - name: tier
+            label: Tier (label di kartu)
+            type: select
+            options:
+              values: [Gold, Silver, Barokah, Hemat]
+          - name: category
+            label: Kategori (untuk tombol filter)
+            type: select
+            options:
+              values: [gold, silver, barokah, hemat]
+          - { name: type, label: Jenis ibadah, type: select, options: { values: [umroh, haji] }, default: umroh }
+          - { name: price, label: Harga (Rp, angka saja), type: number, required: true }
+          - { name: duration, label: Durasi (hari), type: number }
+          - { name: departure, label: Tanggal berangkat, type: date }
+          - { name: airline, label: Maskapai, type: string }
+          - { name: hotelMakkah, label: Hotel Makkah, type: string }
+          - { name: hotelMadinah, label: Hotel Madinah, type: string }
+          - { name: image, label: Foto paket, type: image }
+          - name: scene
+            label: Ilustrasi cadangan (bila foto kosong)
+            type: select
+            options:
+              values: [makkah, madinah]
+          - { name: facilities, label: Fasilitas, type: string, list: true }
+          - { name: description, label: Deskripsi, type: text }
+          - { name: active, label: Tampilkan di website, type: boolean, default: true }
+          - { name: featured, label: Tampilkan di Beranda, type: boolean, default: false }

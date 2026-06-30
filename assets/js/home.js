@@ -25,16 +25,16 @@
       </div>`).join("");
   }
 
-  /* ---- Featured (active) packages ---- */
-  renderPackages(document.getElementById("featured"), ASA.featured(3));
-
-  /* ---- Hero price = cheapest active package ---- */
-  const heroPrice = document.getElementById("heroPrice");
-  const active = ASA.active();
-  if (heroPrice && active.length) {
-    const min = active.reduce((m, p) => (p.price < m.price ? p : m), active[0]);
-    heroPrice.textContent = fmt.rupiahShort(min.price);
-  }
+  /* ---- Featured packages + hero price (setelah data dimuat) ---- */
+  ASA.init().then(function () {
+    renderPackages(document.getElementById("featured"), ASA.featured(3));
+    const heroPrice = document.getElementById("heroPrice");
+    const active = ASA.active();
+    if (heroPrice && active.length) {
+      const min = active.reduce((m, p) => (p.price < m.price ? p : m), active[0]);
+      heroPrice.textContent = fmt.rupiahShort(min.price);
+    }
+  });
 
   /* ---- Why us (Kenapa harus memilih kami) ---- */
   const why = [
