@@ -14,7 +14,7 @@
     ASA.active().forEach((p) => {
       const o = document.createElement("option");
       o.value = p.name;
-      o.textContent = `${p.type === "haji" ? "Haji" : "Umroh"} — ${p.name} (${fmt.rupiahShort(p.price)})`;
+      o.textContent = `${p.tier || (p.type === "haji" ? "Haji" : "Umroh")} — ${p.name} (${fmt.rupiahShort(p.price)})`;
       sel.appendChild(o);
     });
     const pre = new URLSearchParams(location.search).get("pkg");
@@ -30,10 +30,14 @@
       summaryBox.innerHTML = `<div class="empty-state" style="padding:30px">${icon("compass")}<p>Pilih paket untuk melihat ringkasan harga dan jadwal.</p></div>`;
       return;
     }
-    const scene = (typeof sceneSVG === "function") ? sceneSVG(typeof sceneForPackage === "function" ? sceneForPackage(p) : "makkah") : "";
+    const media = (typeof mediaBlock === "function")
+      ? mediaBlock({ scene: (typeof sceneForPackage === "function" ? sceneForPackage(p) : "makkah"), image: p.image, alt: p.name })
+      : "";
+    const tierLabel = p.tier || (p.type === "haji" ? "Haji" : "Umroh");
+    const tierCls = "tier-" + (p.category || "umroh");
     summaryBox.innerHTML = `
-      <div class="sum-media">${scene ? `<div class="scene-wrap">${scene}</div>` : ""}
-        <span class="pkg-type ${p.type}">${p.type === "haji" ? "Haji" : "Umroh"}</span>
+      <div class="sum-media">${media}
+        <span class="pkg-type ${tierCls}">${tierLabel}</span>
       </div>
       <div class="sum-body">
         <b>${p.name}</b>
