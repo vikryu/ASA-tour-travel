@@ -1,125 +1,141 @@
 /* =========================================================
    ASA Tour & Travel — Data Store
-   Manages Haji & Umroh packages with localStorage persistence.
-   This gives users full freedom to manage which packages are
-   currently active ("sedang berlaku") via the Admin page.
+   Manages umroh packages with localStorage persistence.
+   The DEFAULT_PACKAGES below are the source of truth for ALL
+   visitors of the published site. To change packages for
+   everyone, edit this list and bump STORAGE_KEY (v2 -> v3).
    ========================================================= */
 
 const ASA = (function () {
-  const STORAGE_KEY = "asa_packages_v1";
-  const SEED_FLAG = "asa_seeded_v1";
+  const STORAGE_KEY = "asa_packages_v2";
+  const SEED_FLAG = "asa_seeded_v2";
 
-  /* ---- Default / seed packages ---- */
+  // Photo paths (upload these files to assets/img/). If a file is
+  // missing, the brand illustration is shown automatically instead.
+  const IMG = {
+    haram: "assets/img/masjidil-haram.jpg",
+    kabah: "assets/img/kabah.jpg",
+    nabawiKubah: "assets/img/masjid-nabawi-kubah.jpg",
+    nabawiMenara: "assets/img/masjid-nabawi-menara.jpg",
+  };
+
+  /* ---- Default / seed packages (data asli ASA Tour & Travel) ---- */
   const DEFAULT_PACKAGES = [
+
     {
-      id: "umroh-reguler-9h",
-      name: "Umroh Reguler 9 Hari",
-      type: "umroh",
-      price: 27500000,
-      duration: 9,
-      departure: "2026-08-12",
-      airline: "Saudia Airlines",
-      hotelMakkah: "Hotel Al Kiswah Towers (★4)",
-      hotelMadinah: "Hotel Saja Al Madinah (★4)",
-      quota: 45,
-      seatsLeft: 12,
-      active: true,
-      featured: true,
-      theme: "umroh",
-      facilities: ["Tiket Pesawat PP", "Visa Umroh", "Hotel ★4", "Manasik 3x", "Muthawif Berpengalaman", "Makan 3x Sehari"],
-      description: "Paket umroh reguler dengan pelayanan lengkap, pembimbing ibadah berpengalaman, dan hotel berbintang dekat dengan Masjidil Haram dan Masjid Nabawi.",
+      id: "silver-3agu", name: "Paket Silver", tier: "Silver", category: "silver",
+      type: "umroh", price: 41000000, duration: 12, departure: "2026-08-03",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Grand Al Massa / setaraf (★4)",
+      hotelMadinah: "Safwat / setaraf (★4)",
+      scene: "makkah", image: IMG.kabah, active: true, featured: true,
+      facilities: ["Hotel ★4", "City Tour Thaif", "Jabal Magnet", "Kereta Cepat", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh 12 hari dengan hotel bintang 4 dekat masjid, lengkap dengan City Tour Thaif, Jabal Magnet, dan kereta cepat Haramain.",
     },
     {
-      id: "umroh-vip-12h",
-      name: "Umroh VIP Plus Thaif 12 Hari",
-      type: "umroh",
-      price: 41900000,
-      duration: 12,
-      departure: "2026-09-05",
-      airline: "Emirates",
-      hotelMakkah: "Swissôtel Al Maqam (★5)",
-      hotelMadinah: "Anwar Al Madinah Mövenpick (★5)",
-      quota: 30,
-      seatsLeft: 8,
-      active: true,
-      featured: true,
-      theme: "umroh",
-      facilities: ["Hotel ★5 Dekat Masjid", "City Tour Thaif", "Tiket Bisnis Opsional", "Manasik Eksklusif", "Handling VIP", "Air Zamzam 5L"],
-      description: "Pengalaman umroh premium dengan hotel bintang 5 berjarak hanya beberapa langkah dari Masjidil Haram, ditambah ziarah ke Kota Thaif yang sejuk.",
+      id: "gold-3agu", name: "Paket Gold", tier: "Gold", category: "gold",
+      type: "umroh", price: 50000000, duration: 12, departure: "2026-08-03",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Sofwa Tower / setaraf (★5)",
+      hotelMadinah: "Al Haram / setaraf (★5)",
+      scene: "makkah", image: IMG.haram, active: true, featured: true,
+      facilities: ["Hotel ★5", "City Tour Thaif", "Jabal Magnet", "Kereta Cepat", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Umroh premium 12 hari dengan hotel bintang 5 (Al Haram & Sofwa Tower) berjarak sangat dekat dari masjid, plus City Tour Thaif, Jabal Magnet, dan kereta cepat.",
     },
     {
-      id: "umroh-ramadhan-15h",
-      name: "Umroh Ramadhan Full 15 Hari",
-      type: "umroh",
-      price: 38750000,
-      duration: 15,
-      departure: "2027-03-02",
-      airline: "Qatar Airways",
-      hotelMakkah: "Hotel Hilton Suites Makkah (★5)",
-      hotelMadinah: "Dar Al Taqwa Hotel (★5)",
-      quota: 40,
-      seatsLeft: 25,
-      active: true,
-      featured: false,
-      theme: "umroh",
-      facilities: ["I'tikaf 10 Malam Terakhir", "Hotel ★5", "Buka & Sahur Hotel", "Manasik Intensif", "Ziarah Lengkap", "Pembimbing Hafidz"],
-      description: "Raih keutamaan ibadah di bulan suci Ramadhan. Nikmati i'tikaf di sepuluh malam terakhir dengan fasilitas hotel premium dan bimbingan hafidz Qur'an.",
+      id: "silver-10agu", name: "Paket Silver", tier: "Silver", category: "silver",
+      type: "umroh", price: 39500000, duration: 12, departure: "2026-08-10",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Grand Al Massa / setaraf (★4)",
+      hotelMadinah: "Safwat / setaraf (★4)",
+      scene: "makkah", image: IMG.kabah, active: true, featured: false,
+      facilities: ["Hotel ★4", "City Tour Thaif", "Jabal Magnet", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh 12 hari hotel bintang 4 dengan City Tour Thaif dan Jabal Magnet. Pilihan nyaman dengan harga bersahabat.",
     },
     {
-      id: "haji-khusus-25h",
-      name: "Haji Khusus (ONH Plus) 25 Hari",
-      type: "haji",
-      price: 165000000,
-      duration: 25,
-      departure: "2027-05-20",
-      airline: "Saudia Airlines",
-      hotelMakkah: "Fairmont Makkah Clock Tower (★5)",
-      hotelMadinah: "The Oberoi Madinah (★5)",
-      quota: 50,
-      seatsLeft: 18,
-      active: true,
-      featured: true,
-      theme: "haji",
-      facilities: ["Kuota Resmi Kemenag", "Hotel ★5 Premium", "Maktab Dekat Jamarat", "Catering Indonesia", "Bimbingan Manasik 6x", "Tenda AC Arafah-Mina"],
-      description: "Tunaikan rukun Islam kelima dengan layanan Haji Khusus terbaik. Kuota resmi, akomodasi bintang 5, dan pembimbing ibadah profesional sepanjang perjalanan.",
+      id: "gold-10agu", name: "Paket Gold", tier: "Gold", category: "gold",
+      type: "umroh", price: 50000000, duration: 12, departure: "2026-08-10",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Safwah Tower / setaraf (★5)",
+      hotelMadinah: "Al Haram / setaraf (★5)",
+      scene: "makkah", image: IMG.haram, active: true, featured: false,
+      facilities: ["Hotel ★5", "City Tour Thaif", "Jabal Magnet", "Kereta Cepat", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Umroh premium 12 hari dengan hotel bintang 5 (Al Haram & Safwah Tower), City Tour Thaif, Jabal Magnet, dan kereta cepat Haramain.",
+    },
+
+    {
+      id: "silver-17sep", name: "Paket Silver", tier: "Silver", category: "silver",
+      type: "umroh", price: 37500000, duration: 10, departure: "2026-09-17",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Grand Al Massa / setaraf (★4)",
+      hotelMadinah: "Safwat / setaraf (★4)",
+      scene: "makkah", image: IMG.kabah, active: true, featured: false,
+      facilities: ["Hotel ★4", "Jabal Magnet", "Thaif + Telefrik", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh hemat waktu 10 hari, hotel bintang 4, dengan Jabal Magnet serta wisata Thaif lengkap dengan Telefrik (kereta gantung).",
     },
     {
-      id: "haji-furoda-21h",
-      name: "Haji Furoda Tanpa Antri 21 Hari",
-      type: "haji",
-      price: 235000000,
-      duration: 21,
-      departure: "2027-05-25",
-      airline: "Emirates",
-      hotelMakkah: "Raffles Makkah Palace (★5)",
-      hotelMadinah: "Anwar Al Madinah Mövenpick (★5)",
-      quota: 25,
-      seatsLeft: 6,
-      active: true,
-      featured: false,
-      theme: "haji",
-      facilities: ["Visa Furoda Resmi", "Berangkat Tahun Ini", "Hotel ★5 Ultra Dekat", "Maktab VIP", "Handling Eksklusif", "Bimbingan Privat"],
-      description: "Berangkat haji tahun ini tanpa menunggu antrian panjang menggunakan visa Furoda resmi (mujamalah), dengan layanan eksklusif dan akomodasi termewah.",
+      id: "gold-17sep", name: "Paket Gold", tier: "Gold", category: "gold",
+      type: "umroh", price: 48000000, duration: 10, departure: "2026-09-17",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Safwah Tower / setaraf (★5)",
+      hotelMadinah: "Al Haram / setaraf (★5)",
+      scene: "makkah", image: IMG.haram, active: true, featured: false,
+      facilities: ["Hotel ★5", "Jabal Magnet", "Thaif + Telefrik", "Kereta Cepat", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Umroh premium 10 hari dengan hotel bintang 5, Jabal Magnet, wisata Thaif + Telefrik, dan kereta cepat Haramain.",
     },
     {
-      id: "umroh-hemat-8h",
-      name: "Umroh Hemat Promo 8 Hari",
-      type: "umroh",
-      price: 23900000,
-      duration: 8,
-      departure: "2026-07-18",
-      airline: "Lion Air (Saudia Codeshare)",
-      hotelMakkah: "Hotel Rayyana Ajyad (★3)",
-      hotelMadinah: "Hotel Golden Tulip Al Zahabi (★3)",
-      quota: 45,
-      seatsLeft: 3,
-      active: false,
-      featured: false,
-      theme: "umroh",
-      facilities: ["Harga Promo", "Tiket Pesawat PP", "Visa Umroh", "Hotel ★3", "Manasik 2x", "Bus AC"],
-      description: "Paket umroh ekonomis tanpa mengurangi kekhusyukan ibadah. Cocok untuk jamaah yang menginginkan biaya terjangkau dengan pelayanan tetap amanah.",
+      id: "barokah-26sep", name: "Umroh Barokah", tier: "Barokah", category: "barokah",
+      type: "umroh", price: 36600000, duration: 12, departure: "2026-09-26",
+      airline: "Garuda Indonesia",
+      hotelMakkah: "Nada Ajyad / setaraf (★3)",
+      hotelMadinah: "Karam Group / setaraf (★3)",
+      scene: "madinah", image: IMG.nabawiKubah, active: true, featured: true,
+      facilities: ["Hotel ★3", "City Tour Thaif", "Jabal Magnet", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh 12 hari penuh keberkahan dengan harga terjangkau, hotel bintang 3, City Tour Thaif, dan Jabal Magnet.",
+    },
+    {
+      id: "barokah-8okt", name: "Umroh Barokah", tier: "Barokah", category: "barokah",
+      type: "umroh", price: 42100000, duration: 16, departure: "2026-10-08",
+      airline: "Lion Air",
+      hotelMakkah: "Kunuz Ajyad / setaraf (★3)",
+      hotelMadinah: "Safwat / setaraf (★4)",
+      scene: "madinah", image: IMG.nabawiKubah, active: true, featured: false,
+      facilities: ["Durasi 16 Hari", "City Tour Thaif", "Jabal Magnet", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Umroh 16 hari untuk ibadah lebih lama dan khusyuk, hotel Madinah bintang 4 & Makkah bintang 3, dengan City Tour Thaif dan Jabal Magnet.",
+    },
+
+    {
+      id: "barokah-24okt", name: "Umroh Barokah", tier: "Barokah", category: "barokah",
+      type: "umroh", price: 35600000, duration: 12, departure: "2026-10-24",
+      airline: "Lion Air",
+      hotelMakkah: "Ramada Inn / setaraf (★3)",
+      hotelMadinah: "Karam Group / setaraf (★3)",
+      scene: "madinah", image: IMG.nabawiKubah, active: true, featured: false,
+      facilities: ["Hotel ★3", "City Tour Thaif", "Jabal Magnet", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh 12 hari dengan harga paling bersahabat di kelas Barokah, hotel bintang 3, City Tour Thaif, dan Jabal Magnet.",
+    },
+    {
+      id: "hemat-silver-26okt", name: "Special Hemat Silver", tier: "Hemat", category: "hemat",
+      type: "umroh", price: 32600000, duration: 12, departure: "2026-10-26",
+      airline: "Lion Air",
+      hotelMakkah: "Fajar Badee 4 / setaraf (★3)",
+      hotelMadinah: "Burj Mawaddah / setaraf (★3)",
+      scene: "madinah", image: IMG.nabawiMenara, active: true, featured: false,
+      facilities: ["Harga Paling Hemat", "Hotel ★3", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Paket umroh 12 hari paling ekonomis. Tetap nyaman dan amanah dengan hotel bintang 3, makan 3x sehari, dan bimbingan ibadah lengkap.",
+    },
+    {
+      id: "hemat-gold-26okt", name: "Special Hemat Gold", tier: "Hemat", category: "hemat",
+      type: "umroh", price: 42600000, duration: 12, departure: "2026-10-26",
+      airline: "Lion Air",
+      hotelMakkah: "Safwah Tower / setaraf (★5)",
+      hotelMadinah: "Al Haram / setaraf (★5)",
+      scene: "makkah", image: IMG.haram, active: true, featured: false,
+      facilities: ["Hotel ★5 Harga Hemat", "Makan 3x", "Air Zamzam 5L", "Muthawwif", "Manasik"],
+      description: "Nikmati hotel bintang 5 (Al Haram & Safwah Tower) dengan harga special hemat. Umroh 12 hari mewah namun tetap terjangkau.",
     },
   ];
+
 
   /* ---- Internal helpers ---- */
   function load() {
@@ -129,11 +145,9 @@ const ASA = (function () {
     } catch (e) { /* ignore */ }
     return null;
   }
-
   function persist(list) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) { /* ignore */ }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
   }
-
   function ensureSeed() {
     let list = load();
     if (!list) {
@@ -143,7 +157,6 @@ const ASA = (function () {
     }
     return list;
   }
-
   function slugify(s) {
     return (s || "paket").toString().toLowerCase()
       .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
@@ -151,28 +164,24 @@ const ASA = (function () {
 
   /* ---- Public API ---- */
   return {
-    /** Return all packages (active + inactive). */
     all() { return ensureSeed(); },
-
-    /** Active packages only — those "sedang berlaku". */
     active() { return ensureSeed().filter((p) => p.active); },
-
-    /** Active packages filtered by type ("haji" | "umroh" | "all"). */
     byType(type) {
       const a = this.active();
       return type && type !== "all" ? a.filter((p) => p.type === type) : a;
     },
-
-    /** Featured + active, used on home page. */
+    byCategory(cat) {
+      const a = this.active();
+      return cat && cat !== "all" ? a.filter((p) => p.category === cat) : a;
+    },
     featured(limit) {
       const f = this.active().filter((p) => p.featured);
       const list = f.length ? f : this.active();
       return typeof limit === "number" ? list.slice(0, limit) : list;
     },
-
     get(id) { return ensureSeed().find((p) => p.id === id) || null; },
 
-    /** Create or update a package. */
+
     save(pkg) {
       const list = ensureSeed();
       if (!pkg.id) {
@@ -187,27 +196,22 @@ const ASA = (function () {
       persist(list);
       return pkg;
     },
-
     remove(id) {
       let list = ensureSeed().filter((p) => p.id !== id);
       persist(list);
       return list;
     },
-
     toggleActive(id) {
       const list = ensureSeed();
       const p = list.find((x) => x.id === id);
       if (p) { p.active = !p.active; persist(list); }
       return p;
     },
-
-    /** Restore the original demo packages. */
     reset() {
       const list = DEFAULT_PACKAGES.map((p) => ({ ...p }));
       persist(list);
       return list;
     },
-
     stats() {
       const all = ensureSeed();
       return {
@@ -219,6 +223,7 @@ const ASA = (function () {
     },
   };
 })();
+
 
 /* ---- Formatting utilities ---- */
 const fmt = {
@@ -240,13 +245,11 @@ const fmt = {
   },
 };
 
-
 /* =========================================================
    Registration store — pendaftaran jamaah (localStorage)
    ========================================================= */
 const REG = (function () {
   const KEY = "asa_registrations_v1";
-
   function load() {
     try { const r = localStorage.getItem(KEY); if (r) return JSON.parse(r); } catch (e) {}
     return [];
@@ -254,7 +257,6 @@ const REG = (function () {
   function persist(list) {
     try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {}
   }
-
   return {
     all() { return load(); },
     add(reg) {

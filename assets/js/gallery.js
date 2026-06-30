@@ -9,14 +9,11 @@
 
   // size: "tall" | "wide" | "" (square)
   const items = [
-    { scene: "makkah",   size: "wide", title: "Masjidil Haram", caption: "Tawaf mengelilingi Ka'bah, Makkah" },
-    { scene: "madinah",  size: "",     title: "Masjid Nabawi", caption: "Kubah hijau, Madinah Al-Munawwarah" },
-    { scene: "pilgrims", size: "tall", title: "Jamaah ASA", caption: "Kebersamaan tamu Allah dalam ihram" },
-    { scene: "travel",   size: "",     title: "Keberangkatan", caption: "Penerbangan menuju tanah suci" },
-    { scene: "madinah",  size: "",     title: "Ziarah Madinah", caption: "Menapaki jejak sejarah Islam" },
-    { scene: "makkah",   size: "wide", title: "Mataf Senja", caption: "Suasana ibadah di waktu maghrib" },
-    { scene: "pilgrims", size: "",     title: "Manasik", caption: "Bimbingan ibadah sebelum berangkat" },
-    { scene: "travel",   size: "",     title: "Perjalanan", caption: "Perjalanan penuh keberkahan" },
+    { scene: "makkah",  size: "wide", image: "assets/img/masjidil-haram.jpg",    title: "Masjidil Haram", caption: "Makkah Al-Mukarramah" },
+    { scene: "madinah", size: "tall", image: "assets/img/masjid-nabawi-kubah.jpg", title: "Masjid Nabawi", caption: "Kubah hijau, Madinah Al-Munawwarah" },
+    { scene: "makkah",  size: "",     image: "assets/img/kabah.jpg",              title: "Ka'bah", caption: "Kiswah & kaligrafi emas" },
+    { scene: "madinah", size: "",     image: "assets/img/masjid-nabawi-menara.jpg", title: "Menara Nabawi", caption: "Arsitektur Masjid Nabawi" },
+    { scene: "madinah", size: "wide", image: "assets/img/masjid-nabawi-senja.jpg",  title: "Senja di Madinah", caption: "Masjid Nabawi kala senja" },
   ];
 
   grid.innerHTML = items.map((it, i) => {

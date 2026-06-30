@@ -2,18 +2,18 @@
    ASA Tour & Travel — Home page logic
    ========================================================= */
 (function () {
-  /* ---- Hero scene illustration ---- */
+  /* ---- Hero scene illustration (with real photo) ---- */
   const heroScene = document.getElementById("heroScene");
-  if (heroScene && typeof sceneSVG === "function") {
-    heroScene.insertAdjacentHTML("afterbegin", `<div class="scene-wrap">${sceneSVG("makkah")}</div>`);
+  if (heroScene && typeof mediaBlock === "function") {
+    heroScene.insertAdjacentHTML("afterbegin", mediaBlock({ scene: "makkah", image: "assets/img/masjidil-haram.jpg", alt: "Masjidil Haram" }));
   }
 
-  /* ---- Services ---- */
+  /* ---- Services (tier paket) ---- */
   const services = [
-    { ic: "kaaba", title: "Umroh Reguler", desc: "Paket umroh terjangkau dengan fasilitas lengkap dan pembimbing ibadah berpengalaman." },
-    { ic: "star", title: "Umroh VIP", desc: "Pengalaman premium dengan hotel bintang 5 berjarak dekat dari Masjidil Haram." },
-    { ic: "award", title: "Haji Khusus ONH+", desc: "Layanan haji kuota resmi Kemenag dengan akomodasi dan bimbingan terbaik." },
-    { ic: "plane", title: "Haji Furoda", desc: "Berangkat haji tahun ini tanpa antri menggunakan visa furoda resmi." },
+    { ic: "award", title: "Paket Gold (★5)", desc: "Hotel bintang 5 Al Haram & Safwah Tower, berjarak sangat dekat dari masjid dengan fasilitas premium." },
+    { ic: "star", title: "Paket Silver (★4)", desc: "Hotel bintang 4 Safwat & Grand Al Massa, nyaman dan terjangkau untuk ibadah yang khusyuk." },
+    { ic: "kaaba", title: "Umroh Barokah (★3)", desc: "Pilihan ekonomis penuh keberkahan dengan hotel bintang 3 dan pelayanan tetap amanah." },
+    { ic: "wallet", title: "Special Hemat", desc: "Harga paling hemat untuk mewujudkan impian umroh Anda tanpa mengurangi kenyamanan." },
   ];
   const servicesEl = document.getElementById("services");
   if (servicesEl) {
@@ -36,14 +36,14 @@
     heroPrice.textContent = fmt.rupiahShort(min.price);
   }
 
-  /* ---- Why us ---- */
+  /* ---- Why us (Kenapa harus memilih kami) ---- */
   const why = [
-    { ic: "shield", title: "Berizin Resmi & Terpercaya", desc: "Terdaftar resmi sebagai PPIU & PIHK Kementerian Agama RI. Dana Anda aman dan dikelola secara transparan." },
-    { ic: "headset", title: "Pendampingan Penuh", desc: "Muthawif dan tim handling mendampingi Anda dari tanah air, selama di tanah suci, hingga kembali pulang." },
-    { ic: "hotel", title: "Hotel Dekat Masjid", desc: "Kami mengutamakan akomodasi berbintang dengan jarak terdekat ke Masjidil Haram dan Masjid Nabawi." },
-    { ic: "wallet", title: "Harga Jujur & Transparan", desc: "Rincian biaya jelas tanpa biaya tersembunyi. Tersedia program tabungan dan cicilan syariah." },
-    { ic: "book", title: "Manasik Berkualitas", desc: "Bimbingan manasik intensif oleh ustadz bersertifikat agar ibadah Anda sah dan sempurna." },
-    { ic: "users", title: "Kuota Grup Terbatas", desc: "Jumlah jamaah per grup kami jaga agar pelayanan tetap personal dan khusyuk." },
+    { ic: "shield", title: "Pembimbing Berkompeten", desc: "Dibimbing Muthawwif yang berilmu agar seluruh rangkaian ibadah sesuai tuntunan sunnah." },
+    { ic: "check", title: "Prinsip “5 Pasti”", desc: "Pasti travelnya, pasti jadwalnya, pasti terbangnya, pasti hotelnya, dan pasti visanya." },
+    { ic: "hotel", title: "Hotel Dekat Masjid", desc: "Akomodasi dekat Masjidil Haram dan Masjid Nabawi untuk kemudahan dan kekhusyukan ibadah." },
+    { ic: "plane", title: "Penerbangan Nyaman", desc: "Maskapai tepercaya — Garuda Indonesia & Lion Air — dengan rute yang minim transit." },
+    { ic: "heart", title: "Pelayanan Sepenuh Hati", desc: "Pendampingan tulus sejak pendaftaran hingga kembali ke tanah air." },
+    { ic: "book", title: "Manasik & Bimbingan", desc: "Manasik lengkap agar setiap ibadah dilaksanakan dengan benar dan mantap." },
   ];
   const whyEl = document.getElementById("whyus");
   if (whyEl) {
@@ -71,23 +71,16 @@
       </div>`).join("");
   }
 
-  /* ---- Testimonials ---- */
-  const testi = [
-    { q: "Pelayanan sangat amanah. Hotel dekat sekali dengan Masjidil Haram, dan muthawifnya sabar membimbing kami selama umroh.", n: "Hj. Siti Aminah", r: "Jamaah Umroh VIP", i: "S" },
-    { q: "Alhamdulillah berangkat haji furoda tanpa antri. Semua diurus rapi dari dokumen sampai akomodasi. Terima kasih ASA Tour.", n: "H. Bambang Suryanto", r: "Jamaah Haji Furoda", i: "B" },
-    { q: "Harga transparan, tidak ada biaya tersembunyi. Manasiknya juga lengkap sehingga ibadah terasa lebih tenang dan mantap.", n: "Ibu Rahmawati", r: "Jamaah Umroh Reguler", i: "R" },
+  /* ---- Fasilitas yang sudah termasuk ---- */
+  const inclusions = [
+    "Tiket Pesawat PP", "Hotel Madinah & Makkah", "Transportasi Bus AC", "Visa Umroh",
+    "Makan 3x Sehari", "Tour Leader & Muthawwif", "Air Zamzam 5 Liter", "City Tour Makkah & Madinah",
+    "Perlengkapan & Handling", "Manasik",
   ];
-  const testiEl = document.getElementById("testi");
-  if (testiEl) {
-    testiEl.innerHTML = testi.map((t) => `
-      <div class="testi reveal">
-        <div class="stars">★★★★★</div>
-        <p class="quote">${t.q}</p>
-        <div class="who">
-          <span class="av">${t.i}</span>
-          <span><b>${t.n}</b><span>${t.r}</span></span>
-        </div>
-      </div>`).join("");
+  const incEl = document.getElementById("inclusions");
+  if (incEl) {
+    incEl.innerHTML = inclusions.map((f) => `
+      <div class="inc-item reveal">${icon("check", "icon-sm")} <span>${f}</span></div>`).join("");
   }
 
   if (typeof initReveal === "function") initReveal();

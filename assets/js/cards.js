@@ -10,8 +10,15 @@ function pkgGradient(p) {
     : "linear-gradient(155deg, var(--red-500), var(--ink-800))";
 }
 
+function pkgTier(p) {
+  return {
+    label: p.tier || (p.type === "haji" ? "Haji" : "Umroh"),
+    cls: "tier-" + (p.category || (p.type === "haji" ? "haji" : "umroh")),
+  };
+}
+
 function pkgCardHTML(p) {
-  const typeLabel = p.type === "haji" ? "Haji" : "Umroh";
+  const t = pkgTier(p);
   const facils = (p.facilities || []).slice(0, 3)
     .map((f) => `<span class="chip">${f}</span>`).join("");
   const more = (p.facilities || []).length > 3
@@ -24,7 +31,7 @@ function pkgCardHTML(p) {
     <div class="pkg-media">
       ${mediaBlock({ scene: sceneForPackage(p), image: p.image, alt: p.name })}
       <div class="scrim"></div>
-      <span class="pkg-type ${p.type}">${typeLabel}</span>
+      <span class="pkg-type ${t.cls}">${t.label}</span>
       <span class="pkg-flag">${icon("calendar","icon-sm")} ${fmt.date(p.departure)}</span>
       <div class="pm-title"><b>${p.name}</b><span>${p.duration} hari · ${p.airline || "Penerbangan terbaik"}</span></div>
     </div>
@@ -85,7 +92,7 @@ function openPackageDetail(id) {
   if (!p) return;
   const root = ensureModalRoot();
   const box = root.querySelector(".modal");
-  const typeLabel = p.type === "haji" ? "Haji" : "Umroh";
+  const t = pkgTier(p);
   const facils = (p.facilities || []).map((f) => `<li>${icon("check","icon-sm ic")} ${f}</li>`).join("");
   const msg = `Halo ASA Tour & Travel, saya tertarik dengan paket "${p.name}" (${fmt.rupiah(p.price)}). Mohon info pendaftarannya.`;
 
@@ -98,7 +105,7 @@ function openPackageDetail(id) {
       <div class="detail-hero">
         ${mediaBlock({ scene: sceneForPackage(p), image: p.image, alt: p.name })}
         <div class="scrim"></div>
-        <span class="pkg-type ${p.type}" style="position:absolute;top:16px;left:16px;z-index:3">${typeLabel}</span>
+        <span class="pkg-type ${t.cls}" style="position:absolute;top:16px;left:16px;z-index:3">${t.label}</span>
         <div class="dh-text"><b>${p.name}</b><span>${p.duration} hari · ${p.airline || ""}</span></div>
       </div>
       <p style="color:var(--text-soft);margin-bottom:6px">${p.description || ""}</p>

@@ -63,12 +63,14 @@ const NAV_ITEMS = [
   { href: "galeri.html", label: "Galeri" },
   { href: "tentang.html", label: "Tentang" },
   { href: "kontak.html", label: "Kontak" },
-  { href: "admin.html", label: "Kelola Paket" },
 ];
 
-const WA_NUMBER = "6281234567890";
+const WA_NUMBER = "6289525615820";
+const IG_URL = "https://www.instagram.com/asatravelhajidanumroh";
+const FB_URL = "https://www.facebook.com/share/1DoG9Bxgnb/";
+const MAP_URL = "https://share.google/7a1M5u8J9fgbuJwSh";
 function waLink(text) {
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text || "Halo ASA Tour & Travel, saya ingin bertanya tentang paket Haji/Umroh.")}`;
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text || "Halo ASA Tour & Travel, saya ingin bertanya tentang paket umroh yang tersedia.")}`;
 }
 
 function renderHeader() {
@@ -82,14 +84,13 @@ function renderHeader() {
     <div class="topbar">
       <div class="container">
         <div class="tb-left">
-          <span>${icon("phone", "icon-sm")} +62 812-3456-7890</span>
-          <span>${icon("mail", "icon-sm")} info@asatour.co.id</span>
-          <span>${icon("clock", "icon-sm")} Senin–Sabtu, 08.00–17.00 WIB</span>
+          <span>${icon("phone", "icon-sm")} 0895-2561-5820</span>
+          <span>${icon("mail", "icon-sm")} arayasuksesabadi@gmail.com</span>
+          <span>${icon("clock", "icon-sm")} Senin–Sabtu, 08.00–16.00 WIB</span>
         </div>
         <div class="tb-social">
-          <a href="#" aria-label="Instagram">${icon("instagram", "icon-sm")}</a>
-          <a href="#" aria-label="Facebook">${icon("facebook", "icon-sm")}</a>
-          <a href="#" aria-label="YouTube">${icon("youtube", "icon-sm")}</a>
+          <a href="${IG_URL}" target="_blank" rel="noopener" aria-label="Instagram">${icon("instagram", "icon-sm")}</a>
+          <a href="${FB_URL}" target="_blank" rel="noopener" aria-label="Facebook">${icon("facebook", "icon-sm")}</a>
         </div>
       </div>
     </div>
@@ -131,11 +132,10 @@ function renderFooter() {
         <div class="footer-grid">
           <div class="footer-about">
             ${brandMarkup(true)}
-            <p>Biro perjalanan ibadah Haji &amp; Umroh terpercaya. Kami mengantarkan tamu Allah dengan pelayanan amanah, nyaman, dan penuh keberkahan sejak 2009.</p>
+            <p>Biro perjalanan ibadah Umroh yang amanah, profesional, dan tepercaya. Kami membantu setiap jamaah menyempurnakan ibadah ke Tanah Suci dengan kenyamanan maksimal.</p>
             <div class="footer-social">
-              <a href="#" aria-label="Instagram">${icon("instagram", "icon-sm")}</a>
-              <a href="#" aria-label="Facebook">${icon("facebook", "icon-sm")}</a>
-              <a href="#" aria-label="YouTube">${icon("youtube", "icon-sm")}</a>
+              <a href="${IG_URL}" target="_blank" rel="noopener" aria-label="Instagram">${icon("instagram", "icon-sm")}</a>
+              <a href="${FB_URL}" target="_blank" rel="noopener" aria-label="Facebook">${icon("facebook", "icon-sm")}</a>
               <a href="${waLink()}" target="_blank" rel="noopener" aria-label="WhatsApp">${icon("whatsapp", "icon-sm")}</a>
             </div>
           </div>
@@ -153,26 +153,26 @@ function renderFooter() {
           <div>
             <h4>Layanan</h4>
             <ul class="footer-links">
-              <li><a href="paket.html">Umroh Reguler</a></li>
-              <li><a href="paket.html">Umroh VIP</a></li>
-              <li><a href="paket.html">Haji Khusus ONH+</a></li>
-              <li><a href="paket.html">Haji Furoda</a></li>
-              <li><a href="paket.html">Umroh Ramadhan</a></li>
+              <li><a href="paket.html?kategori=gold">Paket Gold (★5)</a></li>
+              <li><a href="paket.html?kategori=silver">Paket Silver (★4)</a></li>
+              <li><a href="paket.html?kategori=barokah">Umroh Barokah (★3)</a></li>
+              <li><a href="paket.html?kategori=hemat">Special Hemat</a></li>
+              <li><a href="pendaftaran.html">Pendaftaran Online</a></li>
             </ul>
           </div>
           <div>
             <h4>Hubungi Kami</h4>
             <ul class="footer-contact">
-              <li>${icon("pin", "icon-sm")} <span>Jl. Merdeka Raya No. 88, Jakarta Pusat, DKI Jakarta 10110</span></li>
-              <li>${icon("phone", "icon-sm")} <span>+62 812-3456-7890</span></li>
-              <li>${icon("mail", "icon-sm")} <span>info@asatour.co.id</span></li>
-              <li>${icon("shield", "icon-sm")} <span>Berizin resmi PPIU &amp; PIHK Kemenag RI</span></li>
+              <li>${icon("pin", "icon-sm")} <span>Perum Bumi Papan Selaras Blok CA 41, Tanggul, Wonoayu, Sidoarjo, Jawa Timur</span></li>
+              <li>${icon("phone", "icon-sm")} <span>WA 0895-2561-5820 · Telp 031-5828-1200</span></li>
+              <li>${icon("mail", "icon-sm")} <span>arayasuksesabadi@gmail.com</span></li>
+              <li>${icon("shield", "icon-sm")} <span>ASA Tour &amp; Travel — Araya Sukses Abadi</span></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
           <span>© ${year} ASA Tour &amp; Travel. Seluruh hak cipta dilindungi.</span>
-          <span>Dibuat dengan ketulusan untuk para tamu Allah · <a href="admin.html">Kelola Paket</a></span>
+          <span>Dibuat dengan ketulusan untuk para tamu Allah.</span>
         </div>
       </div>
     </footer>`;
