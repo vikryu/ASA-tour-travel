@@ -44,6 +44,23 @@ function icon(name, cls) {
   return `<svg class="icon ${cls || ""}" viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;
 }
 
+/* ---------- Security: HTML-escape for safe innerHTML interpolation ---------- */
+function escapeHtml(value) {
+  if (value == null) return "";
+  return String(value).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+/* Hide a real photo that fails to load so the SVG illustration shows through.
+   (Replaces inline onerror handlers so a strict CSP can be used.) */
+document.addEventListener("error", function (e) {
+  var t = e.target;
+  if (t && t.tagName === "IMG" && t.classList && t.classList.contains("scene-photo")) {
+    t.style.display = "none";
+  }
+}, true);
+
 /* ---------- Brand block ---------- */
 function brandMarkup(forFooter) {
   return `

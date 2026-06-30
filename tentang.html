@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; upgrade-insecure-requests" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tentang Kami — ASA Tour &amp; Travel</title>
   <meta name="description" content="Mengenal ASA Tour & Travel, biro perjalanan Haji & Umroh amanah dengan pengalaman lebih dari 15 tahun melayani tamu Allah." />
@@ -102,13 +103,6 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/layout.js"></script>
   <script src="assets/js/scenes.js"></script>
-  <script>
-    (function () {
-      var v = document.getElementById("aboutVisual");
-      if (v && typeof mediaBlock === "function") {
-        v.insertAdjacentHTML("afterbegin", mediaBlock({ scene: "madinah", image: "assets/img/masjid-nabawi-senja.jpg", alt: "Masjid Nabawi" }));
-      }
-    })();
-  </script>
+  <script src="assets/js/about.js"></script>
 </body>
 </html>

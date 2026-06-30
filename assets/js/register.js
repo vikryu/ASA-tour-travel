@@ -36,16 +36,17 @@
       : "";
     const tierLabel = p.tier || (p.type === "haji" ? "Haji" : "Umroh");
     const tierCls = "tier-" + (p.category || "umroh");
+    const e = escapeHtml;
     summaryBox.innerHTML = `
       <div class="sum-media">${media}
-        <span class="pkg-type ${tierCls}">${tierLabel}</span>
+        <span class="pkg-type ${e(tierCls)}">${e(tierLabel)}</span>
       </div>
       <div class="sum-body">
-        <b>${p.name}</b>
+        <b>${e(p.name)}</b>
         <div class="sum-meta">
-          <span>${icon("calendar","icon-sm")} ${fmt.date(p.departure)}</span>
-          <span>${icon("clock","icon-sm")} ${p.duration} hari</span>
-          <span>${icon("plane","icon-sm")} ${p.airline || "-"}</span>
+          <span>${icon("calendar","icon-sm")} ${e(fmt.date(p.departure))}</span>
+          <span>${icon("clock","icon-sm")} ${Number(p.duration) || "-"} hari</span>
+          <span>${icon("plane","icon-sm")} ${e(p.airline || "-")}</span>
         </div>
         <div class="sum-price"><span>Estimasi biaya / jamaah</span><b>${fmt.rupiah(p.price)}</b></div>
       </div>`;
@@ -71,12 +72,22 @@
       const wrap = document.getElementById("registerWrap");
       const p = packageById(reg.pkg);
       const total = p ? p.price * reg.pax : 0;
-      const waText =
-        `Assalamu'alaikum ASA Tour %26 Travel,%0Asaya ingin mendaftar paket berikut:%0A%0A` +
-        `Nama: ${reg.name}%0ANIK: ${reg.nik || "-"}%0ANo. WA: ${reg.phone}%0AEmail: ${reg.email || "-"}%0A` +
-        `Kota: ${reg.city || "-"}%0APaket: ${reg.pkg}%0AJumlah jamaah: ${reg.pax}%0AKamar: ${reg.room || "-"}%0A` +
-        (reg.notes ? `Catatan: ${reg.notes}%0A` : "") +
-        `%0ANo. pendaftaran: ${saved.id}`;
+      const esc = escapeHtml;
+      const lines = [
+        "Assalamu'alaikum ASA Tour & Travel,",
+        "saya ingin mendaftar paket berikut:", "",
+        "Nama: " + reg.name,
+        "NIK: " + (reg.nik || "-"),
+        "No. WA: " + reg.phone,
+        "Email: " + (reg.email || "-"),
+        "Kota: " + (reg.city || "-"),
+        "Paket: " + reg.pkg,
+        "Jumlah jamaah: " + reg.pax,
+        "Kamar: " + (reg.room || "-"),
+      ];
+      if (reg.notes) lines.push("Catatan: " + reg.notes);
+      lines.push("", "No. pendaftaran: " + saved.id);
+      const waHref = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
 
       wrap.innerHTML = `
         <div class="card reveal in" style="text-align:center;padding:46px 34px;max-width:620px;margin:0 auto">
@@ -85,12 +96,12 @@
           </div>
           <h2 style="font-size:1.8rem;margin-bottom:8px">Pendaftaran Diterima</h2>
           <p style="color:var(--text-soft);max-width:440px;margin:0 auto 14px">
-            Terima kasih, <b>${reg.name}</b>. Pendaftaran Anda untuk <b>${reg.pkg}</b> telah kami catat.
-            No. pendaftaran <b>${saved.id}</b>. Konfirmasikan melalui WhatsApp agar tim kami segera memproses.
+            Terima kasih, <b>${esc(reg.name)}</b>. Pendaftaran Anda untuk <b>${esc(reg.pkg)}</b> telah kami catat.
+            No. pendaftaran <b>${esc(saved.id)}</b>. Konfirmasikan melalui WhatsApp agar tim kami segera memproses.
           </p>
-          ${total ? `<p style="margin-bottom:22px">Estimasi total untuk ${reg.pax} jamaah: <b style="color:var(--gold-600);font-family:var(--font-head);font-size:1.3rem">${fmt.rupiah(total)}</b></p>` : ""}
+          ${total ? `<p style="margin-bottom:22px">Estimasi total untuk ${Number(reg.pax)} jamaah: <b style="color:var(--gold-600);font-family:var(--font-head);font-size:1.3rem">${fmt.rupiah(total)}</b></p>` : ""}
           <div class="cta-actions">
-            <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/${WA_NUMBER}?text=${waText}">${icon("whatsapp","icon-sm")} Konfirmasi via WhatsApp</a>
+            <a class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="${esc(waHref)}">${icon("whatsapp","icon-sm")} Konfirmasi via WhatsApp</a>
             <a class="btn btn-ghost" href="paket.html">Lihat Paket Lain</a>
           </div>
         </div>`;

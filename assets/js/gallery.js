@@ -16,14 +16,16 @@
     { scene: "madinah", size: "wide", image: "assets/img/masjid-nabawi-senja.jpg",  title: "Senja di Madinah", caption: "Masjid Nabawi kala senja" },
   ];
 
+  const esc = (typeof escapeHtml === "function") ? escapeHtml : function (s) { return String(s == null ? "" : s); };
+
   grid.innerHTML = items.map((it, i) => {
     const media = (typeof mediaBlock === "function")
       ? mediaBlock({ scene: it.scene, image: it.image, alt: it.title })
       : `<div class="scene-wrap">${sceneSVG(it.scene)}</div>`;
     return `
-      <figure class="gallery-item ${it.size}" data-i="${i}">
+      <figure class="gallery-item ${esc(it.size)}" data-i="${i}">
         ${media}
-        <figcaption class="g-cap"><b>${it.title}</b><span>${it.caption}</span></figcaption>
+        <figcaption class="g-cap"><b>${esc(it.title)}</b><span>${esc(it.caption)}</span></figcaption>
       </figure>`;
   }).join("");
 
@@ -52,7 +54,7 @@
     const media = (typeof mediaBlock === "function")
       ? mediaBlock({ scene: it.scene, image: it.image, alt: it.title })
       : `<div class="scene-wrap">${sceneSVG(it.scene)}</div>`;
-    stage.innerHTML = `${media}<div class="lb-cap"><b>${it.title}</b><span>${it.caption}</span></div>`;
+    stage.innerHTML = `${media}<div class="lb-cap"><b>${esc(it.title)}</b><span>${esc(it.caption)}</span></div>`;
   }
   function open(i) { show(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; }
   function close() { lb.classList.remove("open"); document.body.style.overflow = ""; }

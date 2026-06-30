@@ -191,12 +191,14 @@ function sceneForPackage(p) {
   return p && p.type === "haji" ? "makkah" : "madinah";
 }
 
-/* Build a media block: optional real photo layered over a scene fallback. */
+/* Build a media block: optional real photo layered over a scene fallback.
+   The image URL is HTML-escaped; load failures are handled by a global
+   capture-phase listener in layout.js (so no inline onerror is needed). */
 function mediaBlock(opts) {
   const scene = sceneSVG(opts.scene);
+  const esc = (typeof escapeHtml === "function") ? escapeHtml : function (s) { return String(s == null ? "" : s); };
   const img = opts.image
-    ? `<img class="scene-photo" src="${opts.image}" alt="${(opts.alt || "").replace(/"/g, "&quot;")}" loading="lazy"
-         onerror="this.style.display='none'"/>`
+    ? `<img class="scene-photo" src="${esc(opts.image)}" alt="${esc(opts.alt || "")}" loading="lazy"/>`
     : "";
   return `<div class="scene-wrap">${scene}${img}</div>`;
 }

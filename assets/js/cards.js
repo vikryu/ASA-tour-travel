@@ -18,27 +18,28 @@ function pkgTier(p) {
 }
 
 function pkgCardHTML(p) {
+  const e = escapeHtml;
   const t = pkgTier(p);
   const facils = (p.facilities || []).slice(0, 3)
-    .map((f) => `<span class="chip">${f}</span>`).join("");
+    .map((f) => `<span class="chip">${e(f)}</span>`).join("");
   const more = (p.facilities || []).length > 3
     ? `<span class="chip">+${p.facilities.length - 3} lagi</span>` : "";
   const seats = (typeof p.seatsLeft === "number" && p.seatsLeft <= 10)
-    ? `<div class="pkg-quota">${icon("users","icon-sm")} Sisa ${p.seatsLeft} kursi</div>` : "";
+    ? `<div class="pkg-quota">${icon("users","icon-sm")} Sisa ${Number(p.seatsLeft)} kursi</div>` : "";
 
   return `
-  <article class="pkg reveal" data-type="${p.type}" data-id="${p.id}">
+  <article class="pkg reveal" data-type="${e(p.type)}" data-id="${e(p.id)}">
     <div class="pkg-media">
       ${mediaBlock({ scene: sceneForPackage(p), image: p.image, alt: p.name })}
       <div class="scrim"></div>
-      <span class="pkg-type ${t.cls}">${t.label}</span>
-      <span class="pkg-flag">${icon("calendar","icon-sm")} ${fmt.date(p.departure)}</span>
-      <div class="pm-title"><b>${p.name}</b><span>${p.duration} hari · ${p.airline || "Penerbangan terbaik"}</span></div>
+      <span class="pkg-type ${e(t.cls)}">${e(t.label)}</span>
+      <span class="pkg-flag">${icon("calendar","icon-sm")} ${e(fmt.date(p.departure))}</span>
+      <div class="pm-title"><b>${e(p.name)}</b><span>${Number(p.duration) || ""} hari · ${e(p.airline || "Penerbangan terbaik")}</span></div>
     </div>
     <div class="pkg-body">
       <div class="pkg-meta">
-        <span>${icon("hotel","icon-sm")} ${p.hotelMakkah || "Hotel pilihan"}</span>
-        <span>${icon("clock","icon-sm")} ${p.duration} hari</span>
+        <span>${icon("hotel","icon-sm")} ${e(p.hotelMakkah || "Hotel pilihan")}</span>
+        <span>${icon("clock","icon-sm")} ${Number(p.duration) || ""} hari</span>
       </div>
       <div class="pkg-facils">${facils}${more}</div>
       <div class="pkg-foot">
@@ -47,7 +48,7 @@ function pkgCardHTML(p) {
           <b><span class="cur">Rp</span> ${Number(p.price).toLocaleString("id-ID")}</b>
           ${seats}
         </div>
-        <button class="btn btn-dark btn-sm" data-detail="${p.id}">Detail ${icon("arrow","icon-sm")}</button>
+        <button class="btn btn-dark btn-sm" data-detail="${e(p.id)}">Detail ${icon("arrow","icon-sm")}</button>
       </div>
     </div>
   </article>`;
@@ -82,7 +83,9 @@ function ensureModalRoot() {
   root.className = "modal-overlay";
   root.innerHTML = `<div class="modal modal-detail" role="dialog" aria-modal="true"></div>`;
   document.body.appendChild(root);
-  root.addEventListener("click", (e) => { if (e.target === root) closePackageDetail(); });
+  root.addEventListener("click", (e) => {
+    if (e.target === root || (e.target.closest && e.target.closest("[data-close]"))) closePackageDetail();
+  });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePackageDetail(); });
   return root;
 }
@@ -93,29 +96,30 @@ function openPackageDetail(id) {
   const root = ensureModalRoot();
   const box = root.querySelector(".modal");
   const t = pkgTier(p);
-  const facils = (p.facilities || []).map((f) => `<li>${icon("check","icon-sm ic")} ${f}</li>`).join("");
+  const e = escapeHtml;
+  const facils = (p.facilities || []).map((f) => `<li>${icon("check","icon-sm ic")} ${e(f)}</li>`).join("");
   const msg = `Halo ASA Tour & Travel, saya tertarik dengan paket "${p.name}" (${fmt.rupiah(p.price)}). Mohon info pendaftarannya.`;
 
   box.innerHTML = `
     <div class="modal-head">
       <h3>Detail Paket</h3>
-      <button class="modal-close" aria-label="Tutup" onclick="closePackageDetail()">${icon("x")}</button>
+      <button class="modal-close" type="button" data-close aria-label="Tutup">${icon("x")}</button>
     </div>
     <div class="modal-body">
       <div class="detail-hero">
         ${mediaBlock({ scene: sceneForPackage(p), image: p.image, alt: p.name })}
         <div class="scrim"></div>
-        <span class="pkg-type ${t.cls}" style="position:absolute;top:16px;left:16px;z-index:3">${t.label}</span>
-        <div class="dh-text"><b>${p.name}</b><span>${p.duration} hari · ${p.airline || ""}</span></div>
+        <span class="pkg-type ${e(t.cls)}" style="position:absolute;top:16px;left:16px;z-index:3">${e(t.label)}</span>
+        <div class="dh-text"><b>${e(p.name)}</b><span>${Number(p.duration) || ""} hari · ${e(p.airline || "")}</span></div>
       </div>
-      <p style="color:var(--text-soft);margin-bottom:6px">${p.description || ""}</p>
+      <p style="color:var(--text-soft);margin-bottom:6px">${e(p.description || "")}</p>
       <div class="detail-grid">
-        <div class="detail-item"><span>Keberangkatan</span><b>${fmt.date(p.departure)}</b></div>
-        <div class="detail-item"><span>Durasi</span><b>${p.duration} Hari</b></div>
-        <div class="detail-item"><span>Maskapai</span><b>${p.airline || "-"}</b></div>
-        <div class="detail-item"><span>Sisa Kursi</span><b>${typeof p.seatsLeft === "number" ? p.seatsLeft + " kursi" : "Tersedia"}</b></div>
-        <div class="detail-item"><span>Hotel Makkah</span><b>${p.hotelMakkah || "-"}</b></div>
-        <div class="detail-item"><span>Hotel Madinah</span><b>${p.hotelMadinah || "-"}</b></div>
+        <div class="detail-item"><span>Keberangkatan</span><b>${e(fmt.date(p.departure))}</b></div>
+        <div class="detail-item"><span>Durasi</span><b>${Number(p.duration) || "-"} Hari</b></div>
+        <div class="detail-item"><span>Maskapai</span><b>${e(p.airline || "-")}</b></div>
+        <div class="detail-item"><span>Sisa Kursi</span><b>${typeof p.seatsLeft === "number" ? Number(p.seatsLeft) + " kursi" : "Tersedia"}</b></div>
+        <div class="detail-item"><span>Hotel Makkah</span><b>${e(p.hotelMakkah || "-")}</b></div>
+        <div class="detail-item"><span>Hotel Madinah</span><b>${e(p.hotelMadinah || "-")}</b></div>
       </div>
       <h4 style="font-size:1.05rem;margin-bottom:4px">Fasilitas Termasuk</h4>
       <ul class="detail-list">${facils}</ul>
@@ -126,7 +130,7 @@ function openPackageDetail(id) {
     </div>
     <div class="modal-foot">
       <a class="btn btn-ghost" href="pendaftaran.html?pkg=${encodeURIComponent(p.name)}">${icon("book","icon-sm")} Daftar Online</a>
-      <a class="btn btn-gold" target="_blank" rel="noopener" href="${waLink(msg)}">${icon("whatsapp","icon-sm")} Daftar via WhatsApp</a>
+      <a class="btn btn-gold" target="_blank" rel="noopener noreferrer" href="${e(waLink(msg))}">${icon("whatsapp","icon-sm")} Daftar via WhatsApp</a>
     </div>`;
   root.classList.add("open");
   document.body.style.overflow = "hidden";
