@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran Online — ASA Tour &amp; Travel</title>
+  <meta name="description" content="Daftar paket Haji & Umroh ASA Tour & Travel secara online. Isi data jamaah, pilih paket, dan konfirmasi melalui WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="header"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Beranda</a> / Pendaftaran</div>
+      <h1>Pendaftaran Online</h1>
+      <p>Lengkapi formulir berikut untuk mendaftar paket Haji atau Umroh. Data Anda tersimpan dan dapat langsung dikonfirmasi via WhatsApp.</p>
+    </div>
+  </section>
+
+  <section class="section" id="registerWrap">
+    <div class="container">
+      <div class="register-grid">
+        <!-- Form -->
+        <div class="register-card reveal">
+          <h3>Formulir Pendaftaran Jamaah</h3>
+          <p style="color:var(--text-soft);font-size:.92rem">Isian bertanda * wajib diisi. Pastikan data sesuai dokumen resmi.</p>
+          <form id="registerForm">
+            <div class="form-section-title">Data Diri</div>
+            <div class="form-row">
+              <div class="field"><label>Nama Lengkap *</label><input class="input" id="r_name" required placeholder="Sesuai paspor/KTP" /></div>
+              <div class="field"><label>NIK</label><input class="input" id="r_nik" placeholder="16 digit" /></div>
+            </div>
+            <div class="form-row-3">
+              <div class="field"><label>Jenis Kelamin</label>
+                <select class="select" id="r_gender"><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select>
+              </div>
+              <div class="field"><label>Tanggal Lahir</label><input class="input" id="r_birth" type="date" /></div>
+              <div class="field"><label>Kota Domisili</label><input class="input" id="r_city" placeholder="cth. Jakarta" /></div>
+            </div>
+
+            <div class="form-section-title">Kontak</div>
+            <div class="form-row">
+              <div class="field"><label>No. WhatsApp *</label><input class="input" id="r_phone" required placeholder="08xxxxxxxxxx" /></div>
+              <div class="field"><label>Email</label><input class="input" id="r_email" type="email" placeholder="nama@email.com" /></div>
+            </div>
+
+            <div class="form-section-title">Pilihan Paket</div>
+            <div class="field"><label>Paket Ibadah *</label>
+              <select class="select" id="r_pkg" required><option value="">— Pilih paket berlaku —</option></select>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Jumlah Jamaah</label><input class="input" id="r_pax" type="number" min="1" value="1" /></div>
+              <div class="field"><label>Tipe Kamar</label>
+                <select class="select" id="r_room"><option value="Quad (4 orang)">Quad (4 orang)</option><option value="Triple (3 orang)">Triple (3 orang)</option><option value="Double (2 orang)">Double (2 orang)</option></select>
+              </div>
+            </div>
+            <div class="field"><label>Catatan Tambahan</label><textarea class="textarea" id="r_notes" placeholder="Permintaan khusus, kebutuhan kursi roda, dll."></textarea></div>
+
+            <button type="submit" class="btn btn-gold btn-block" style="margin-top:8px">Daftar Sekarang</button>
+            <p style="text-align:center;color:var(--text-soft);font-size:.8rem;margin-top:12px">Dengan mendaftar, Anda menyetujui tim kami menghubungi Anda untuk proses selanjutnya.</p>
+          </form>
+        </div>
+
+        <!-- Summary -->
+        <aside>
+          <div class="summary-card reveal" id="pkgSummary"></div>
+          <div class="summary-note">
+            <svg class="icon icon-sm ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>Estimasi biaya bersifat indikatif. Rincian final akan dikonfirmasi tim kami sesuai ketersediaan kursi dan jadwal keberangkatan.</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/scenes.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>
