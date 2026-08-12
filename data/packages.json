@@ -2,7 +2,7 @@
   "packages": [
     {
       "name": "Paket Gold",
-      "id": "gold-okt24",
+      "id": "gold-okt1",
       "tier": "Gold",
       "category": "gold",
       "type": "umroh",
@@ -33,26 +33,28 @@
       "featured": false
     },
     {
-      "name": "Special Hemat Silver",
-      "id": "hemat-silver-26okt",
-      "tier": "Hemat",
-      "category": "hemat",
+      "name": "Paket Gold",
+      "id": "gold-okt2",
+      "tier": "Gold",
+      "category": "gold",
       "type": "umroh",
-      "price": 32600000,
+      "price": 46500000,
       "duration": 12,
       "departure": "2026-10-26",
-      "airline": "Lion Air",
-      "hotelMakkah": "Fajar Badee 4 / setaraf (★3)",
-      "hotelMadinah": "Burj Mawaddah / setaraf (★3)",
+      "airline": "Lion Air / Garuda Indonesia",
+      "hotelMakkah": "Safwah / setaraf (★5)",
+      "hotelMadinah": "Winner Inn Al Khair / setaraf (★5)",
       "image": "assets/img/masjid-nabawi-menara.jpg",
       "scene": "madinah",
       "facilities": [
-        "Harga Paling Hemat",
+        "Umroh 3X",
+        "Jabbal Magnet + Jabbal Khandamah",
         "Hotel ★3",
         "Makan 3x",
         "Air Zamzam 5L",
         "Muthawwif",
-        "Manasik"
+        "Manasik",
+        "Percetakan Al-Quran"
       ],
       "description": "Paket umroh 12 hari paling ekonomis. Tetap nyaman dan amanah dengan hotel bintang 3, makan 3x sehari, dan bimbingan ibadah lengkap.",
       "active": true,
