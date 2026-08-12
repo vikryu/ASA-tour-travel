@@ -95,6 +95,31 @@
       "description": "Nikmati hotel bintang 5 (Al Haram & Safwah Tower) dengan harga special hemat. Umroh 12 hari mewah namun tetap terjangkau.",
       "active": true,
       "featured": false
+    },
+    {
+      "name": "Paket Silver ",
+      "id": "silver-okt2",
+      "tier": "Silver",
+      "category": "silver",
+      "type": "umroh",
+      "price": 42500000,
+      "duration": 12,
+      "departure": "2026-10-26",
+      "airline": "Lion Air / Garuda Indonesia",
+      "hotelMakkah": "Maysan Al Masyaer / Setaraf (★4)",
+      "hotelMadinah": "Golden Tulip / Setaraf (★5)",
+      "image": "assets/img/kabah.jpg",
+      "scene": "makkah",
+      "facilities": [
+        "Umroh 3X",
+        "Jabbal Magnet + Jabbal Khandamah",
+        "Tour Kota Thaif",
+        "Percetakan Al-Quran",
+        "Kereta Gantung (Telefric)",
+        "Hotel Makkah "
+      ],
+      "active": true,
+      "featured": false
     }
   ]
 }
