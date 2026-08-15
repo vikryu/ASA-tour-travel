@@ -164,6 +164,19 @@
       "description": "Umroh Paket Reguler Dengan Program 12 Hari Untuk Keberangkatan Bulan Oktober - Desember. Dengan Fasilitas Yang Sangat Lengkap, Serta Hotel Berbintang Yang Tentunya Nyaman Dan Aman. Dan Juga, Nikmati Berbagai Banyak Fasilitas Free Yang Kalian Dapatkan Saat Bersama Asa Travel.",
       "active": true,
       "featured": false
+    },
+    {
+      "name": "Paket Reguler ",
+      "id": "reguler-okt2",
+      "tier": "Hemat",
+      "category": "hemat",
+      "type": "umroh",
+      "price": 39700000,
+      "duration": 12,
+      "departure": "2026-10-26",
+      "airline": "Lion Air / Garuda Indonesia",
+      "active": true,
+      "featured": false
     }
   ]
 }
