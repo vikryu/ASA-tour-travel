@@ -129,6 +129,18 @@
       "description": "Umroh Paket Silver Dengan Program 12 Hari Untuk Keberangkatan Bulan Oktober - Desember. Dengan Fasilitas Yang Sangat Lengkap, Serta Hotel Berbintang Yang Tentunya Nyaman Dan Aman. Dan Juga, Nikmati Berbagai Banyak Fasilitas Free Yang Kalian Dapatkan Saat Bersama Asa Travel.",
       "active": true,
       "featured": false
+    },
+    {
+      "name": "Paket Reguler",
+      "id": "reguler-okt1",
+      "tier": "Hemat",
+      "category": "hemat",
+      "type": "umroh",
+      "price": 39800000,
+      "duration": 12,
+      "departure": "2026-10-26",
+      "active": true,
+      "featured": false
     }
   ]
 }
