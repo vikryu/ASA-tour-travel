@@ -198,6 +198,40 @@
       "description": "Umroh Paket Reguler Dengan Program 12 Hari Untuk Keberangkatan Bulan Oktober - Desember. Dengan Fasilitas Yang Sangat Lengkap, Serta Hotel Berbintang Yang Tentunya Nyaman Dan Aman. Dan Juga, Nikmati Berbagai Banyak Fasilitas Free Yang Kalian Dapatkan Saat Bersama Asa Travel.",
       "active": true,
       "featured": false
+    },
+    {
+      "name": "Paket Reguler ",
+      "id": "reguler-okt3",
+      "tier": "Hemat",
+      "category": "hemat",
+      "type": "umroh",
+      "price": 39200000,
+      "duration": 12,
+      "departure": "2026-09-29",
+      "airline": "Lion Air / Garuda Indonesia",
+      "hotelMakkah": "Sawaed Al Khair (★3)",
+      "hotelMadinah": "Grand Plaza (★4)",
+      "image": "assets/img/c75bf3dc8c73547730840a461b235f7a.jpg",
+      "scene": "makkah",
+      "facilities": [
+        "3X Umroh",
+        "Jabbal Magnet & Jabbal Khandamah",
+        "Percetakan Al Quran",
+        "City Tour Thaif",
+        "Kereta Gantung (Telefric)",
+        "Visa Umroh",
+        "Tour Leader, Muthawwif & Muthawwifah",
+        "Zamzam 5L",
+        "Handling & Lounge Bandara",
+        "Manasik",
+        "Snack City Tour",
+        "Kereta cepat",
+        "Sertifikat",
+        "Dokumentasi "
+      ],
+      "description": "Umroh Paket Reguler Dengan Program 12 Hari Untuk Keberangkatan Bulan Oktober - Desember. Dengan Fasilitas Yang Sangat Lengkap, Serta Hotel Berbintang Yang Tentunya Nyaman Dan Aman. Dan Juga, Nikmati Berbagai Banyak Fasilitas Free Yang Kalian Dapatkan Saat Bersama Asa Travel.",
+      "active": true,
+      "featured": false
     }
   ]
 }
