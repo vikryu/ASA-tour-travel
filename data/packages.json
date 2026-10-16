@@ -240,7 +240,24 @@
       "category": "hemat",
       "type": "umroh",
       "price": 35600000,
+      "duration": 11,
       "departure": "2026-10-16",
+      "airline": "Lion Air (SUB-JED)",
+      "hotelMakkah": "Nada Ajyad (★3)",
+      "hotelMadinah": "Mukhtara Al Gharbi (★3)",
+      "image": "assets/img/eb07970c16bc80a15c3339cd3bf0e453.jpg",
+      "scene": "madinah",
+      "facilities": [
+        "3X Umroh",
+        "City Tour Makkah - Madinah",
+        "Sertifikat Umroh",
+        "Dokumentasi ",
+        "TL & Muthawwif",
+        "Air Zamzam 5L",
+        "Handling Bandara & Hotel",
+        "Manasik"
+      ],
+      "description": "Paket Umroh Barokah Dengan Program 12 Hari Dengan Fasilitas Hotel Bintang 3 dan Free City Tour Makkah Madinah. Harga Sudah Termasuk Dengan Kenaikan Biaya Avtur.",
       "active": true,
       "featured": false
     }
